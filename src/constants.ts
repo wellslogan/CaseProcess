@@ -25,27 +25,6 @@ export const objectPropsToCsvColumnMap = [
     accessor: 'Plaintiffs',
   },
   {
-    name: 'Plaintiff age',
-    accessor: data => {
-      if (!data.Plaintiffs) return;
-      let val;
-
-      // plaintiff name will be something like
-      // "(Female, 40 Years)"
-      for (let plaintiffName of data.Plaintiffs) {
-        const pattern = /\([^)]*, (\d+)[^(]*\)/gim;
-        const [, ageMatch = ''] = pattern.exec(plaintiffName);
-
-        // if there's already a val (i.e. an age from earlier)
-        // return 'Multiple'
-        if (val && ageMatch) return 'Multiple';
-        val = ageMatch;
-      }
-
-      return val;
-    },
-  },
-  {
     name: 'Plaintiff expert(s)',
     accessor: 'PlaintiffExperts',
   },
